@@ -111,7 +111,16 @@
     mouse.down = !mouse.down;
   }
 
-  canvas.addEventListener("mousemove", setPos);
-  window.addEventListener("mousedown", isDown);
-  window.addEventListener("mouseup", isDown);
+  ["mousemove", "touchmove"].forEach((i) => {
+    canvas.addEventListener(i, setPos);
+  });
+
+  ["mousedown", "touchstart"].forEach((i) => {
+    window.addEventListener(i, isDown);
+  });
+
+  ["mouseup", "touchend"].forEach((i) => {
+    window.addEventListener(i, isDown);
+  });
+  
 })();
